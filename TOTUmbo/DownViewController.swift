@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var pickerViewProvinces: UIPickerView!
     @IBOutlet weak var listView: UITableView!
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath)
         
         let row = indexPath.row
         cell.textLabel?.text = listViewDataSource[row] as? String
@@ -130,17 +130,36 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             let nsdata = str!.dataUsingEncoding(NSUTF8StringEncoding)
             
-            var jsonError: NSError?
-            let jsonDict: NSArray = (NSJSONSerialization.JSONObjectWithData(nsdata!, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as? NSArray)!
+//            var jsonError: NSError?
+//            let jsonDict: NSArray = (NSJSONSerialization.JSONObjectWithData(nsdata!, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as? NSArray)!
+//            
+//            
+//            for json in jsonDict {
+//                let province = json.valueForKey("province") as! String
+//                let amount = json.valueForKey("amount") as! String
+//                
+//                print("ss \(province) \(amount)")
+//                self.pickerDataSource.addObject("\(province)\t\t\(amount)")
+//            }
             
             
-            for json in jsonDict {
-                let province = json.valueForKey("province") as! String
-                let amount = json.valueForKey("amount") as! String
+            do {
+                if let jsonDict: NSArray = try! NSJSONSerialization.JSONObjectWithData(nsdata!, options:NSJSONReadingOptions.MutableContainers) as? NSArray {
                 
-                print("ss \(province) \(amount)")
-                self.pickerDataSource.addObject("\(province)\t\t\(amount)")
+                    for json in jsonDict {
+                        let province = json.valueForKey("province") as! String
+                        let amount = json.valueForKey("amount") as! String
+                        
+                        print("ss \(province) \(amount)")
+                        self.pickerDataSource.addObject("\(province)\t\t\(amount)")
+                    }
+                } else {
+                    print("Failed...")
+                }
+            } catch let serializationError as NSError {
+                print(serializationError)
             }
+            
             
                 
                 //              print(jsonDict)
@@ -152,10 +171,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         task.resume()
     }
-//    
-//    @IBAction func test(sender: AnyObject) {
-//        //        request("SELECT * FROM nodeumbo LIMIT 2")
-//        request("SELECT s.province AS province, SUM(CASE WHEN smsdown = 'yes' AND smsup = '' THEN 1 ELSE 0 END) AS amount FROM sector s, nodeumbo n WHERE n.node_sector = s.umbo GROUP BY s.province ORDER BY s.province")
-//    }
+    @IBAction func req(sender: AnyObject) {
+        request("SELECT s.province AS province, SUM(CASE WHEN smsdown = 'yes' AND smsup = '' THEN 1 ELSE 0 END) AS amount FROM sector s, nodeumbo n WHERE n.node_sector = s.umbo GROUP BY s.province ORDER BY s.province")
+        
+        JLToast.makeText("Simple Toast Message").show()
+
+    }
 }
 

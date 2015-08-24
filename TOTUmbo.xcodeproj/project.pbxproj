@@ -7,16 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1FFA361B8AC9CD00A527C4 /* JLToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA331B8AC9CD00A527C4 /* JLToast.swift */; };
+		9A1FFA371B8AC9CD00A527C4 /* JLToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA341B8AC9CD00A527C4 /* JLToastCenter.swift */; };
+		9A1FFA381B8AC9CD00A527C4 /* JLToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA351B8AC9CD00A527C4 /* JLToastView.swift */; };
 		9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFA1B5CDA0800483018 /* AppDelegate.swift */; };
 		9A984BFD1B5CDA0800483018 /* DownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFC1B5CDA0800483018 /* DownViewController.swift */; };
 		9A984C001B5CDA0800483018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A984BFE1B5CDA0800483018 /* Main.storyboard */; };
 		9A984C021B5CDA0800483018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A984C011B5CDA0800483018 /* Assets.xcassets */; };
 		9A984C051B5CDA0800483018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A984C031B5CDA0800483018 /* LaunchScreen.storyboard */; };
-		9AD4938C1B6F51B4005FD200 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4938B1B6F51B4005FD200 /* ListViewCell.swift */; };
 		9ADAE7D61B61F8CA00C7D75C /* SharedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADAE7D51B61F8CA00C7D75C /* SharedValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A1FFA321B8AC9CD00A527C4 /* JLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToast.h; sourceTree = "<group>"; };
+		9A1FFA331B8AC9CD00A527C4 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
+		9A1FFA341B8AC9CD00A527C4 /* JLToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastCenter.swift; sourceTree = "<group>"; };
+		9A1FFA351B8AC9CD00A527C4 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
 		9A984BF71B5CDA0800483018 /* TOTUmbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TOTUmbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A984BFA1B5CDA0800483018 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A984BFC1B5CDA0800483018 /* DownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownViewController.swift; sourceTree = "<group>"; };
@@ -24,7 +30,6 @@
 		9A984C011B5CDA0800483018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A984C041B5CDA0800483018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A984C061B5CDA0800483018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AD4938B1B6F51B4005FD200 /* ListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		9ADAE7D51B61F8CA00C7D75C /* SharedValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +44,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1FFA311B8AC9CD00A527C4 /* JLToast */ = {
+			isa = PBXGroup;
+			children = (
+				9A1FFA321B8AC9CD00A527C4 /* JLToast.h */,
+				9A1FFA331B8AC9CD00A527C4 /* JLToast.swift */,
+				9A1FFA341B8AC9CD00A527C4 /* JLToastCenter.swift */,
+				9A1FFA351B8AC9CD00A527C4 /* JLToastView.swift */,
+			);
+			path = JLToast;
+			sourceTree = "<group>";
+		};
 		9A984BEE1B5CDA0800483018 = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +74,7 @@
 		9A984BF91B5CDA0800483018 /* TOTUmbo */ = {
 			isa = PBXGroup;
 			children = (
-				9AD4938B1B6F51B4005FD200 /* ListViewCell.swift */,
+				9A1FFA311B8AC9CD00A527C4 /* JLToast */,
 				9A984BFA1B5CDA0800483018 /* AppDelegate.swift */,
 				9A984BFC1B5CDA0800483018 /* DownViewController.swift */,
 				9A984BFE1B5CDA0800483018 /* Main.storyboard */,
@@ -141,9 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD4938C1B6F51B4005FD200 /* ListViewCell.swift in Sources */,
 				9A984BFD1B5CDA0800483018 /* DownViewController.swift in Sources */,
+				9A1FFA361B8AC9CD00A527C4 /* JLToast.swift in Sources */,
 				9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */,
+				9A1FFA371B8AC9CD00A527C4 /* JLToastCenter.swift in Sources */,
+				9A1FFA381B8AC9CD00A527C4 /* JLToastView.swift in Sources */,
 				9ADAE7D61B61F8CA00C7D75C /* SharedValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +278,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TOTUmbo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tot.TOTUmbo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -275,7 +293,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TOTUmbo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tot.TOTUmbo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

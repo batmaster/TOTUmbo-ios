@@ -10,6 +10,6 @@ import UIKit
 
 class SharedValues {
     
-    let HOST_DB:String = "http://203.114.104.242/umbo/getRecord.php"
+    let HOST_DB: String = "http://203.114.104.242/umbo/getRecord.php"
 
 }
