@@ -43,14 +43,6 @@
                                                 <rect key="frame" x="0.0" y="56" width="248" height="404"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="94D-vM-Pva">
-                                                    <rect key="frame" x="0.0" y="306" width="248" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="req:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zoC-b5-i1u"/>
-                                                    </connections>
-                                                </button>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextCell" rowHeight="284" id="N1Q-rD-riU">
                                                         <rect key="frame" x="0.0" y="22" width="248" height="284"/>
