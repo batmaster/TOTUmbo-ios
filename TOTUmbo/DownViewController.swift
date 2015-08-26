@@ -16,7 +16,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var listView: UITableView!
     
     var pickerDataSource: NSMutableArray = []
-    var listViewDataSource: NSMutableArray = ["b"]
+    var listViewDataSource: NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +68,28 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath) as! ListViewCell
         
-        let row = indexPath.row
-        cell.textLabel?.text = listViewDataSource[row] as? String
+        cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
+        cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
+        cell.labelProvince.hidden = (listViewDataSource[indexPath.row] as! ListViewItem).showProvince
+        
+        cell.labelDevice.text = (listViewDataSource[indexPath.row] as! ListViewItem).device
+        cell.labelDevice.font = UIFont.boldSystemFontOfSize(17.0)
+        
+        cell.labelIp.text = (listViewDataSource[indexPath.row] as! ListViewItem).ip
+        cell.labelIp.sizeToFit()
+        
+        cell.labelTemp.text = (listViewDataSource[indexPath.row] as! ListViewItem).temp + "°C"
+        cell.labelTemp.frame = CGRectMake(cell.labelIp.frame.width + 4, 0, 0, cell.labelIp.frame.height)
+        cell.labelTemp.sizeToFit()
+        
+        cell.labelDate.text = (listViewDataSource[indexPath.row] as! ListViewItem).date
+        cell.labelDate.sizeToFit()
+        
+        cell.labelElapse.text = (listViewDataSource[indexPath.row] as! ListViewItem).elapse
+        cell.labelElapse.frame = CGRectMake(cell.labelDown.frame.width + 4, 0, 0, cell.labelDown.frame.height)
+        cell.labelElapse.sizeToFit()
         
         return cell
     }
@@ -137,7 +155,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         request.HTTPMethod = "POST"
         
 //        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString("\t")[0]
-        let selectedProvince = "ปัตตานี"
+        let selectedProvince = "ยะลา"
         var sql = SharedValues.REQ_GET_DOWNLIST(["\(selectedProvince)"])
         sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
         sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
@@ -155,9 +173,12 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             do {
                 if let jsonDict: NSArray = try! NSJSONSerialization.JSONObjectWithData(nsdata, options:NSJSONReadingOptions.MutableContainers) as? NSArray {
                     
-                    print(jsonDict)
+//                    print(jsonDict)
                     
+                    var i = 0
                     for json in jsonDict {
+                        print(">>\(i)<<")
+                        i += 1
                         let province = json.valueForKey("province") as! String
                         let device = json.valueForKey("node_name") as! String
                         let ip = json.valueForKey("node_ip") as! String
@@ -170,10 +191,9 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                         formatter.timeZone = NSTimeZone(forSecondsFromGMT: 7)
                         let date = formatter.stringFromDate(dateDate)
                         
-                        let elapsed = NSDate().offsetFrom(dateDate)
-                        print("\(province) \(device) \(ip) \(temp) \(date) \(elapsed)")
+                        let elapse = NSDate().offsetFrom(dateDate)
                         
-//                        self.pickerDataSource.addObject("\(province)\t\t\(amount)")
+                        self.listViewDataSource.addObject(ListViewItem(province: province, device: device, ip: ip, temp: temp, date: date, elapse: elapse, showProvince: false))
                     }
                 } else {
                     print("Failed...")
@@ -182,9 +202,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 print(serializationError)
             }
             
-            self.pickerViewProvinces.reloadAllComponents()
-            
-            self.getListTask()
+            self.listView.reloadData()
         })
         task.resume()
     }

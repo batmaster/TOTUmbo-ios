@@ -11,6 +11,8 @@
 		9A1FFA371B8AC9CD00A527C4 /* JLToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA341B8AC9CD00A527C4 /* JLToastCenter.swift */; };
 		9A1FFA381B8AC9CD00A527C4 /* JLToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA351B8AC9CD00A527C4 /* JLToastView.swift */; };
 		9A1FFA3A1B8AD07E00A527C4 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA391B8AD07E00A527C4 /* Parser.swift */; };
+		9A1FFA3E1B8C5CCA00A527C4 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */; };
+		9A1FFA401B8C5FC000A527C4 /* ListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */; };
 		9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFA1B5CDA0800483018 /* AppDelegate.swift */; };
 		9A984BFD1B5CDA0800483018 /* DownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFC1B5CDA0800483018 /* DownViewController.swift */; };
 		9A984C001B5CDA0800483018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A984BFE1B5CDA0800483018 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 		9A1FFA341B8AC9CD00A527C4 /* JLToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastCenter.swift; sourceTree = "<group>"; };
 		9A1FFA351B8AC9CD00A527C4 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
 		9A1FFA391B8AD07E00A527C4 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewItem.swift; sourceTree = "<group>"; };
 		9A984BF71B5CDA0800483018 /* TOTUmbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TOTUmbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A984BFA1B5CDA0800483018 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A984BFC1B5CDA0800483018 /* DownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				9A984C061B5CDA0800483018 /* Info.plist */,
 				9ADAE7D51B61F8CA00C7D75C /* SharedValues.swift */,
 				9A1FFA391B8AD07E00A527C4 /* Parser.swift */,
+				9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */,
+				9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */,
 			);
 			path = TOTUmbo;
 			sourceTree = "<group>";
@@ -164,7 +170,9 @@
 				9A1FFA361B8AC9CD00A527C4 /* JLToast.swift in Sources */,
 				9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */,
 				9A1FFA371B8AC9CD00A527C4 /* JLToastCenter.swift in Sources */,
+				9A1FFA3E1B8C5CCA00A527C4 /* ListViewCell.swift in Sources */,
 				9A1FFA381B8AC9CD00A527C4 /* JLToastView.swift in Sources */,
+				9A1FFA401B8C5FC000A527C4 /* ListViewItem.swift in Sources */,
 				9ADAE7D61B61F8CA00C7D75C /* SharedValues.swift in Sources */,
 				9A1FFA3A1B8AD07E00A527C4 /* Parser.swift in Sources */,
 			);
