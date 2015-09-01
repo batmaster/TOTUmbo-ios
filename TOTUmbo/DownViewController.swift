@@ -68,7 +68,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath) as! ListViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ListViewCell", forIndexPath: indexPath) as! ListViewCell
         
         cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
         cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
@@ -155,7 +155,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         request.HTTPMethod = "POST"
         
 //        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString("\t")[0]
-        let selectedProvince = "ยะลา"
+        let selectedProvince = "ตรัง"
         var sql = SharedValues.REQ_GET_DOWNLIST(["\(selectedProvince)"])
         sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
         sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
