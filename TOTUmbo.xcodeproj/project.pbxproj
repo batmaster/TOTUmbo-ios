@@ -14,12 +14,12 @@
 		9A1FFA3E1B8C5CCA00A527C4 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */; };
 		9A1FFA401B8C5FC000A527C4 /* ListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */; };
 		9A5CF5911B8DB68E00930131 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5CF5901B8DB68E00930131 /* SettingViewController.swift */; };
+		9A76673A1B95845A003D9210 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7667391B95845A003D9210 /* NotificationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFA1B5CDA0800483018 /* AppDelegate.swift */; };
 		9A984BFD1B5CDA0800483018 /* DownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A984BFC1B5CDA0800483018 /* DownViewController.swift */; };
 		9A984C001B5CDA0800483018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A984BFE1B5CDA0800483018 /* Main.storyboard */; };
 		9A984C021B5CDA0800483018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A984C011B5CDA0800483018 /* Assets.xcassets */; };
 		9A984C051B5CDA0800483018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A984C031B5CDA0800483018 /* LaunchScreen.storyboard */; };
-		9AD13EE41B90089B0098D987 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD13EE31B90089B0098D987 /* NotificationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9AD13EE61B901B230098D987 /* PreferenceBoxViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD13EE51B901B230098D987 /* PreferenceBoxViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		9AD13EE81B901CDD0098D987 /* PreferenceBoxViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD13EE71B901CDD0098D987 /* PreferenceBoxViewItem.swift */; settings = {ASSET_TAGS = (); }; };
 		9ADAE7D61B61F8CA00C7D75C /* SharedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADAE7D51B61F8CA00C7D75C /* SharedValues.swift */; };
@@ -34,6 +34,7 @@
 		9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewItem.swift; sourceTree = "<group>"; };
 		9A5CF5901B8DB68E00930131 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		9A7667391B95845A003D9210 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		9A984BF71B5CDA0800483018 /* TOTUmbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TOTUmbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A984BFA1B5CDA0800483018 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A984BFC1B5CDA0800483018 /* DownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		9A984C011B5CDA0800483018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A984C041B5CDA0800483018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A984C061B5CDA0800483018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AD13EE31B90089B0098D987 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = JLToast/NotificationViewController.swift; sourceTree = "<group>"; };
 		9AD13EE51B901B230098D987 /* PreferenceBoxViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceBoxViewCell.swift; sourceTree = "<group>"; };
 		9AD13EE71B901CDD0098D987 /* PreferenceBoxViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceBoxViewItem.swift; sourceTree = "<group>"; };
 		9ADAE7D51B61F8CA00C7D75C /* SharedValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedValues.swift; sourceTree = "<group>"; };
@@ -99,10 +99,10 @@
 				9A1FFA3D1B8C5CC900A527C4 /* ListViewCell.swift */,
 				9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */,
 				9A984BFC1B5CDA0800483018 /* DownViewController.swift */,
-				9AD13EE31B90089B0098D987 /* NotificationViewController.swift */,
 				9A5CF5901B8DB68E00930131 /* SettingViewController.swift */,
 				9AD13EE51B901B230098D987 /* PreferenceBoxViewCell.swift */,
 				9AD13EE71B901CDD0098D987 /* PreferenceBoxViewItem.swift */,
+				9A7667391B95845A003D9210 /* NotificationViewController.swift */,
 			);
 			path = TOTUmbo;
 			sourceTree = "<group>";
@@ -181,13 +181,13 @@
 				9AD13EE81B901CDD0098D987 /* PreferenceBoxViewItem.swift in Sources */,
 				9A984BFD1B5CDA0800483018 /* DownViewController.swift in Sources */,
 				9AD13EE61B901B230098D987 /* PreferenceBoxViewCell.swift in Sources */,
-				9AD13EE41B90089B0098D987 /* NotificationViewController.swift in Sources */,
 				9A1FFA361B8AC9CD00A527C4 /* JLToast.swift in Sources */,
 				9A984BFB1B5CDA0800483018 /* AppDelegate.swift in Sources */,
 				9A1FFA371B8AC9CD00A527C4 /* JLToastCenter.swift in Sources */,
 				9A1FFA3E1B8C5CCA00A527C4 /* ListViewCell.swift in Sources */,
 				9A5CF5911B8DB68E00930131 /* SettingViewController.swift in Sources */,
 				9A1FFA381B8AC9CD00A527C4 /* JLToastView.swift in Sources */,
+				9A76673A1B95845A003D9210 /* NotificationViewController.swift in Sources */,
 				9A1FFA401B8C5FC000A527C4 /* ListViewItem.swift in Sources */,
 				9ADAE7D61B61F8CA00C7D75C /* SharedValues.swift in Sources */,
 				9A1FFA3A1B8AD07E00A527C4 /* Parser.swift in Sources */,

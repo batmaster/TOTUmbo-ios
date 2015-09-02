@@ -8,28 +8,139 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
-
+class NotificationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var listView: UITableView!
+    
+    var listViewDataSource: NSMutableArray = []
+    
+    let pref = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        listView.dataSource = self
+        listView.delegate = self
+        
+        getListTask()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listViewDataSource.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ListViewCell", forIndexPath: indexPath) as! ListViewCell
+        
+        cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
+        cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
+        cell.labelProvince.hidden = (listViewDataSource[indexPath.row] as! ListViewItem).showProvince
+        
+        cell.labelDevice.text = (listViewDataSource[indexPath.row] as! ListViewItem).device
+        cell.labelDevice.font = UIFont.boldSystemFontOfSize(17.0)
+        
+        cell.labelIp.text = (listViewDataSource[indexPath.row] as! ListViewItem).ip
+        cell.labelIp.sizeToFit()
+        
+        cell.labelTemp.text = (listViewDataSource[indexPath.row] as! ListViewItem).temp + "°C"
+        cell.labelTemp.frame = CGRectMake(cell.labelIp.frame.width + 4, 0, 0, cell.labelIp.frame.height)
+        cell.labelTemp.sizeToFit()
+        
+        cell.labelDate.text = (listViewDataSource[indexPath.row] as! ListViewItem).date
+        cell.labelDate.sizeToFit()
+        
+        cell.labelElapse.text = (listViewDataSource[indexPath.row] as! ListViewItem).elapse
+        cell.labelElapse.frame = CGRectMake(cell.labelDown.frame.width + 4, 0, 0, cell.labelDown.frame.height)
+        cell.labelElapse.sizeToFit()
+        
+        
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let row = indexPath.row
+        print(listViewDataSource[row])
+    }
+    
+    func getListTask() {
+        let url = NSURL(string: SharedValues.HOST_DB)
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        
+        //        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString("\t")[0]
+        let dictionary: NSDictionary = self.pref.dictionaryRepresentation()
+        let keys: [NSString] = (dictionary.allKeys as! [NSString])
+        
+        var selectedProvinces: [String] = []
+        for province in keys {
+            if (!province.isEqualToString("notification") && self.pref.boolForKey(province as String) == true) {
+                selectedProvinces.append(province as String)
+            }
+        }
+        
+        var sql = SharedValues.REQ_GET_DOWNLIST(selectedProvinces)
+        sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
+        sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
+        sql = sql.stringByReplacingOccurrencesOfString(")", withString: "xxcxx")
+        sql = sql.stringByReplacingOccurrencesOfString(">", withString: "xxdxx")
+        let param: String = "sql=\(sql)"
+        
+        request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            data, response, error in
+            
+            let s = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+            let nsdata = Parser.Parse(s)
+            
+            do {
+                if let jsonDict: NSArray = try! NSJSONSerialization.JSONObjectWithData(nsdata, options:NSJSONReadingOptions.MutableContainers) as? NSArray {
+                    
+                    //                    print(jsonDict)
+                    
+                    var i = 0
+                    for json in jsonDict {
+                        print(">>\(i)<<")
+                        i += 1
+                        let province = json.valueForKey("province") as! String
+                        let device = json.valueForKey("node_name") as! String
+                        let ip = json.valueForKey("node_ip") as! String
+                        let temp = json.valueForKey("temp") as! String
+                        
+                        let dateString = json.valueForKey("node_time_down") as! String
+                        let dateDate = NSDate(timeIntervalSince1970: (dateString as NSString).doubleValue)
+                        let formatter = NSDateFormatter()
+                        formatter.dateFormat = "yyyy.MM.dd HH:mm:ss"
+                        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 7)
+                        let date = formatter.stringFromDate(dateDate)
+                        
+                        let elapse = NSDate().offsetFrom(dateDate)
+                        
+                        self.listViewDataSource.addObject(ListViewItem(province: province, device: device, ip: ip, temp: temp, date: date, elapse: elapse, showProvince: false))
+                    }
+                } else {
+                    print("Failed...")
+                }
+            } catch let serializationError as NSError {
+                print(serializationError)
+            }
+            
+            self.listView.reloadData()
+        })
+        task.resume()
+    }
 }

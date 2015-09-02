@@ -91,6 +91,8 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         cell.labelElapse.frame = CGRectMake(cell.labelDown.frame.width + 4, 0, 0, cell.labelDown.frame.height)
         cell.labelElapse.sizeToFit()
         
+        
+        
         return cell
     }
 
