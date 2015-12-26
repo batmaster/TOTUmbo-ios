@@ -75,8 +75,8 @@ class SettingViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let row = indexPath.row
-        print(listViewDataSource[row])
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! PreferenceBoxViewCell
+        cell.switchEnable.setOn(!cell.switchEnable.on, animated: true)
     }
     
     

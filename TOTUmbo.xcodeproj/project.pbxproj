@@ -100,9 +100,9 @@
 				9A1FFA3F1B8C5FC000A527C4 /* ListViewItem.swift */,
 				9A984BFC1B5CDA0800483018 /* DownViewController.swift */,
 				9A5CF5901B8DB68E00930131 /* SettingViewController.swift */,
+				9A7667391B95845A003D9210 /* NotificationViewController.swift */,
 				9AD13EE51B901B230098D987 /* PreferenceBoxViewCell.swift */,
 				9AD13EE71B901CDD0098D987 /* PreferenceBoxViewItem.swift */,
-				9A7667391B95845A003D9210 /* NotificationViewController.swift */,
 			);
 			path = TOTUmbo;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TOTUmbo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tot.TOTUmbo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -321,7 +321,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TOTUmbo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tot.TOTUmbo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

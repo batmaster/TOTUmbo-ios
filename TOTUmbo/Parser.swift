@@ -11,6 +11,11 @@ import Foundation
 class Parser {
     
     class func Parse(var str: NSString) -> NSData {
+        if (str == " ") {
+            str = "Array\n(\n    [node_name] => \n)\n "
+        }
+        print(str)
+        
         str = str.stringByReplacingOccurrencesOfString("\n", withString: "!!!")
         str = str.stringByReplacingOccurrencesOfString("Array!!!(!!!    [", withString: "{\"")
         str = str.stringByReplacingOccurrencesOfString("] => ", withString: "\":\"")

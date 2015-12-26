@@ -12,7 +12,8 @@ import UIKit
 
 class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var pickerViewProvinces: UIPickerView!
+    @IBOutlet weak var textFieldProvince: UITextField!
+    @IBOutlet var pickerViewProvinces: UIPickerView!
     @IBOutlet weak var listView: UITableView!
     
     var pickerDataSource: NSMutableArray = []
@@ -20,6 +21,8 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textFieldProvince.inputView = pickerViewProvinces
         
         pickerViewProvinces.dataSource = self
         pickerViewProvinces.delegate = self
@@ -55,6 +58,13 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         return pickerLabel
     }
     
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textFieldProvince.text = pickerDataSource[row].componentsSeparatedByString(" ")[pickerDataSource[row].componentsSeparatedByString(" ").count - 1]
+        self.view.endEditing(true)
+        
+        self.getListTask()
+    }
+    
     
     
     
@@ -70,9 +80,11 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListViewCell", forIndexPath: indexPath) as! ListViewCell
         
+        
+        
         cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
         cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
-        cell.labelProvince.hidden = (listViewDataSource[indexPath.row] as! ListViewItem).showProvince
+        cell.labelProvince.hidden = !(listViewDataSource[indexPath.row] as! ListViewItem).showProvince
         
         cell.labelDevice.text = (listViewDataSource[indexPath.row] as! ListViewItem).device
         cell.labelDevice.font = UIFont.boldSystemFontOfSize(17.0)
@@ -91,6 +103,21 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         cell.labelElapse.frame = CGRectMake(cell.labelDown.frame.width + 4, 0, 0, cell.labelDown.frame.height)
         cell.labelElapse.sizeToFit()
         
+        if ((listViewDataSource[indexPath.row] as! ListViewItem).device == "ไม่มีรายการ") {
+            cell.labelProvince.hidden = true
+            cell.labelIp.hidden = true
+            cell.labelTemp.hidden = true
+            cell.labelDate.hidden = true
+            cell.labelDown.hidden = true
+            cell.labelElapse.hidden = true
+        }
+        else {
+            cell.labelIp.hidden = false
+            cell.labelTemp.hidden = false
+            cell.labelDate.hidden = false
+            cell.labelDown.hidden = false
+            cell.labelElapse.hidden = false
+        }
         
         
         return cell
@@ -100,7 +127,6 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
-        print(listViewDataSource[row])
     }
     
     
@@ -133,9 +159,9 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     
                     for json in jsonDict {
                         let province = json.valueForKey("province") as! String
-                        let amount = json.valueForKey("amount") as! String
+                        let amount: Int! = Int(json.valueForKey("amount") as! String)
                         
-                        self.pickerDataSource.addObject("\(province)\t\t\(amount)")
+                        self.pickerDataSource.addObject(String(format: "%3d %@", amount, province))
                     }
                 } else {
                     print("Failed...")
@@ -156,14 +182,16 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         
-//        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString("\t")[0]
-        let selectedProvince = "ตรัง"
+        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString(" ")[pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString(" ").count - 1]
+      
         var sql = SharedValues.REQ_GET_DOWNLIST(["\(selectedProvince)"])
         sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
         sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
         sql = sql.stringByReplacingOccurrencesOfString(")", withString: "xxcxx")
         sql = sql.stringByReplacingOccurrencesOfString(">", withString: "xxdxx")
         let param: String = "sql=\(sql)"
+        
+        print(param)
         
         request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
@@ -175,14 +203,15 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             do {
                 if let jsonDict: NSArray = try! NSJSONSerialization.JSONObjectWithData(nsdata, options:NSJSONReadingOptions.MutableContainers) as? NSArray {
                     
-//                    print(jsonDict)
+                    self.listViewDataSource.removeAllObjects()
                     
-                    var i = 0
                     for json in jsonDict {
-                        print(">>\(i)<<")
-                        i += 1
-                        let province = json.valueForKey("province") as! String
                         let device = json.valueForKey("node_name") as! String
+                        if (device == "") {
+                            self.listViewDataSource.addObject(ListViewItem(province: "", device: "ไม่มีรายการ", ip: "", temp: "", date: "", elapse: "", showProvince: false))
+                            break;
+                        }
+                        let province = json.valueForKey("province") as! String
                         let ip = json.valueForKey("node_ip") as! String
                         let temp = json.valueForKey("temp") as! String
                         
