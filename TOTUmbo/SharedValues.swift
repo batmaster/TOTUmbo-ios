@@ -10,6 +10,8 @@ import Foundation
 
 class SharedValues {
     
+    // DATABASE
+    
     static let HOST_DB: String = "http://203.114.104.242/umbo/getRecord.php"
     
     class func REQ_GET_PROVINCES() -> String {
@@ -37,5 +39,34 @@ class SharedValues {
     
     class func REQ_GET_UPLIST() -> String {
         return "SELECT n.*, s.province FROM nodeumbo n, sector s WHERE n.node_sector = s.umbo AND n.id_nu IN (%s) AND smsdown = 'yes' AND smsup = 'yes' ORDER BY n.id_nu DESC"
+    }
+    
+    // PREFERENCES
+    
+    static let pref = NSUserDefaults.standardUserDefaults()
+    
+    class func setEnableStatePref(key: String, value: Bool, isProvince: Bool) {
+        
+        pref.setBool(value, forKey: isProvince ? "p_" + key : key)
+    }
+    
+    class func getEnableStatePref(key: String, isProvince: Bool) -> Bool {
+        return pref.boolForKey(isProvince ? "p_" + key : key)
+    }
+    
+    class func hasEnableStatePref(key: String, isProvince: Bool) -> Bool {
+        return pref.objectForKey(isProvince ? "p_" + key : key) != nil
+    }
+    
+    class func getEnableProvinces() -> [String]{
+        var provinces: [String] = []
+        
+        for elem in pref.dictionaryRepresentation() {
+            if (elem.0[elem.0.startIndex.advancedBy(0)] == "p") {
+                provinces.append(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(1)))
+                print(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(2)))
+            }
+        }
+        return []
     }
 }

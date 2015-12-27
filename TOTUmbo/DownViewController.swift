@@ -80,8 +80,6 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListViewCell", forIndexPath: indexPath) as! ListViewCell
         
-        
-        
         cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
         cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
         cell.labelProvince.hidden = !(listViewDataSource[indexPath.row] as! ListViewItem).showProvince
@@ -118,7 +116,6 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             cell.labelDown.hidden = false
             cell.labelElapse.hidden = false
         }
-        
         
         return cell
     }
@@ -190,8 +187,6 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         sql = sql.stringByReplacingOccurrencesOfString(")", withString: "xxcxx")
         sql = sql.stringByReplacingOccurrencesOfString(">", withString: "xxdxx")
         let param: String = "sql=\(sql)"
-        
-        print(param)
         
         request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {

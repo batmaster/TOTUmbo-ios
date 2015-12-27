@@ -14,7 +14,6 @@ class Parser {
         if (str == " ") {
             str = "Array\n(\n    [node_name] => \n)\n "
         }
-        print(str)
         
         str = str.stringByReplacingOccurrencesOfString("\n", withString: "!!!")
         str = str.stringByReplacingOccurrencesOfString("Array!!!(!!!    [", withString: "{\"")

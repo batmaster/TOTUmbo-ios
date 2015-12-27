@@ -15,16 +15,15 @@ class SettingViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var listViewDataSource: NSMutableArray = []
     
-    let pref = NSUserDefaults.standardUserDefaults()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.pref.objectForKey("notification") == nil {
-            self.pref.setBool(false, forKey: "notification")
+        if !SharedValues.hasEnableStatePref("notification", isProvince: false){
+            SharedValues.setEnableStatePref("notification", value: false, isProvince: false)
         }
-        let notificationEnable = self.pref.boolForKey("notification")
-        switchNotification.on = notificationEnable
+        
+        switchNotification.on = SharedValues.getEnableStatePref("notification", isProvince: false)
 
         listView.dataSource = self
         listView.delegate = self
@@ -38,11 +37,11 @@ class SettingViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func switchNotificationClicked(sender: UISwitch) {
-        self.pref.setBool(sender.on, forKey: "notification")
+        SharedValues.setEnableStatePref("notification", value: sender.on, isProvince: false)
     }
     
     @IBAction func switchClicked(sender: UISwitch) {
-        self.pref.setBool(sender.on, forKey: (listViewDataSource[sender.tag] as! PreferenceBoxViewItem).province)
+        SharedValues.setEnableStatePref((listViewDataSource[sender.tag] as! PreferenceBoxViewItem).province, value: sender.on, isProvince: true)
     }
     
     
@@ -107,10 +106,10 @@ class SettingViewController: UIViewController, UITableViewDataSource, UITableVie
                     
                     for json in jsonDict {
                         let province = json.valueForKey("province") as! String
-                        if self.pref.objectForKey(province) == nil {
-                            self.pref.setBool(false, forKey: province)
+                        if !SharedValues.hasEnableStatePref(province, isProvince: true) {
+                            SharedValues.setEnableStatePref(province, value: false, isProvince: true)
                         }
-                        let enable = self.pref.boolForKey(province)
+                        let enable = SharedValues.getEnableStatePref(province, isProvince: true)
                         
                         self.listViewDataSource.addObject(PreferenceBoxViewItem(province: province, enable: enable))
                     }

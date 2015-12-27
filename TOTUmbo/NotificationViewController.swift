@@ -46,7 +46,7 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.labelProvince.text = (listViewDataSource[indexPath.row] as! ListViewItem).province
         cell.labelProvince.font = UIFont.boldSystemFontOfSize(17.0)
-        cell.labelProvince.hidden = (listViewDataSource[indexPath.row] as! ListViewItem).showProvince
+        cell.labelProvince.hidden = !(listViewDataSource[indexPath.row] as! ListViewItem).showProvince
         
         cell.labelDevice.text = (listViewDataSource[indexPath.row] as! ListViewItem).device
         cell.labelDevice.font = UIFont.boldSystemFontOfSize(17.0)
@@ -65,7 +65,21 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
         cell.labelElapse.frame = CGRectMake(cell.labelDown.frame.width + 4, 0, 0, cell.labelDown.frame.height)
         cell.labelElapse.sizeToFit()
         
-        
+        if ((listViewDataSource[indexPath.row] as! ListViewItem).device == "ไม่มีรายการ") {
+            cell.labelProvince.hidden = true
+            cell.labelIp.hidden = true
+            cell.labelTemp.hidden = true
+            cell.labelDate.hidden = true
+            cell.labelDown.hidden = true
+            cell.labelElapse.hidden = true
+        }
+        else {
+            cell.labelIp.hidden = false
+            cell.labelTemp.hidden = false
+            cell.labelDate.hidden = false
+            cell.labelDown.hidden = false
+            cell.labelElapse.hidden = false
+        }
         
         return cell
     }
@@ -93,12 +107,14 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         
-        var sql = SharedValues.REQ_GET_DOWNLIST(selectedProvinces)
+        var sql = SharedValues.REQ_GET_DOWNLIST([""])
         sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
         sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
         sql = sql.stringByReplacingOccurrencesOfString(")", withString: "xxcxx")
         sql = sql.stringByReplacingOccurrencesOfString(">", withString: "xxdxx")
         let param: String = "sql=\(sql)"
+        
+        print(param)
         
         request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
@@ -110,14 +126,15 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
             do {
                 if let jsonDict: NSArray = try! NSJSONSerialization.JSONObjectWithData(nsdata, options:NSJSONReadingOptions.MutableContainers) as? NSArray {
                     
-                    //                    print(jsonDict)
+                    self.listViewDataSource.removeAllObjects()
                     
-                    var i = 0
                     for json in jsonDict {
-                        print(">>\(i)<<")
-                        i += 1
-                        let province = json.valueForKey("province") as! String
                         let device = json.valueForKey("node_name") as! String
+                        if (device == "") {
+                            self.listViewDataSource.addObject(ListViewItem(province: "", device: "ไม่มีรายการ", ip: "", temp: "", date: "", elapse: "", showProvince: false))
+                            break;
+                        }
+                        let province = json.valueForKey("province") as! String
                         let ip = json.valueForKey("node_ip") as! String
                         let temp = json.valueForKey("temp") as! String
                         
@@ -130,7 +147,7 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
                         
                         let elapse = NSDate().offsetFrom(dateDate)
                         
-                        self.listViewDataSource.addObject(ListViewItem(province: province, device: device, ip: ip, temp: temp, date: date, elapse: elapse, showProvince: false))
+                        self.listViewDataSource.addObject(ListViewItem(province: province, device: device, ip: ip, temp: temp, date: date, elapse: elapse, showProvince: true))
                     }
                 } else {
                     print("Failed...")
