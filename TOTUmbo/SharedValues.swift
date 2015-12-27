@@ -62,11 +62,10 @@ class SharedValues {
         var provinces: [String] = []
         
         for elem in pref.dictionaryRepresentation() {
-            if (elem.0[elem.0.startIndex.advancedBy(0)] == "p") {
-                provinces.append(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(1)))
-                print(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(2)))
+            if (elem.0[elem.0.startIndex.advancedBy(0)] == "p" && getEnableStatePref(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(2)), isProvince: true) == true) {
+                provinces.append(elem.0.substringFromIndex(elem.0.startIndex.advancedBy(2)))
             }
         }
-        return []
+        return provinces
     }
 }

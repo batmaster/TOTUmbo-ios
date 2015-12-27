@@ -14,15 +14,13 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
     
     var listViewDataSource: NSMutableArray = []
     
-    let pref = NSUserDefaults.standardUserDefaults()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         listView.dataSource = self
         listView.delegate = self
         
-        getListTask()
+        getDownListTask()
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,26 +86,14 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
-        print(listViewDataSource[row])
     }
     
-    func getListTask() {
+    func getDownListTask() {
         let url = NSURL(string: SharedValues.HOST_DB)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         
-        //        let selectedProvince = pickerDataSource[pickerViewProvinces.selectedRowInComponent(0)].componentsSeparatedByString("\t")[0]
-        let dictionary: NSDictionary = self.pref.dictionaryRepresentation()
-        let keys: [NSString] = (dictionary.allKeys as! [NSString])
-        
-        var selectedProvinces: [String] = []
-        for province in keys {
-            if (!province.isEqualToString("notification") && self.pref.boolForKey(province as String) == true) {
-                selectedProvinces.append(province as String)
-            }
-        }
-        
-        var sql = SharedValues.REQ_GET_DOWNLIST([""])
+        var sql = SharedValues.REQ_GET_DOWNLIST(SharedValues.getEnableProvinces())
         sql = sql.stringByReplacingOccurrencesOfString("'", withString: "xxaxx")
         sql = sql.stringByReplacingOccurrencesOfString("(", withString: "xxbxx")
         sql = sql.stringByReplacingOccurrencesOfString(")", withString: "xxcxx")
