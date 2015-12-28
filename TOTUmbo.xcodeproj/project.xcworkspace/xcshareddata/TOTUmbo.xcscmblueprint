@@ -1,18 +1,18 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++BC03335",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++653A5B3",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++17155CA" : 0,
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++1790A91" : 0,
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++BC03335" : 0
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++653A5B3" : 0,
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++93596B2" : 0,
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++ABA4368" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "045321B6-9E2B-413D-85DB-4CA7C2AD860B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++17155CA" : "..",
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++1790A91" : "..",
-    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++BC03335" : "TOTUmbo\/"
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++653A5B3" : "TOTUmbo\/",
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++93596B2" : "..",
+    "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++ABA4368" : ".."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TOTUmbo",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -21,17 +21,17 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/batmaster\/TOTUmbo-ios.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++17155CA"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++653A5B3"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/batmaster\/TOTUmbo-ios.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++1790A91"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++93596B2"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/batmaster\/TOTUmbo-ios.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++BC03335"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEC2AD2982914F230DD05B4FC8C7089D1E2B90AD+++ABA4368"
     }
   ]
 }

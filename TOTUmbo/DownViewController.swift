@@ -19,8 +19,12 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var pickerDataSource: NSMutableArray = []
     var listViewDataSource: NSMutableArray = []
     
+    var refreshControl:UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        tabBarController.viewControllers?.forEach { $0.view }
         
         textFieldProvince.inputView = pickerViewProvinces
         
@@ -29,6 +33,11 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         listView.dataSource = self
         listView.delegate = self
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "ลากลงเพื่อรีเฟรช")
+        refreshControl.addTarget(self, action: "getListTask", forControlEvents: UIControlEvents.ValueChanged)
+        listView.addSubview(refreshControl)
         
         getProvincesTask()
     }
@@ -168,6 +177,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             }
             
             self.pickerViewProvinces.reloadAllComponents()
+            self.textFieldProvince.text = SharedValues.getLastUsedProvince()
             
             self.getListTask()
         })
@@ -228,7 +238,8 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 print(serializationError)
             }
             
-            self.listView.reloadData()
+            self.listView.performSelectorOnMainThread(Selector("reloadData"), withObject: nil, waitUntilDone: true)
+            self.refreshControl.endRefreshing()
         })
         task.resume()
     }

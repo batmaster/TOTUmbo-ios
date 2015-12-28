@@ -46,7 +46,6 @@ class SharedValues {
     static let pref = NSUserDefaults.standardUserDefaults()
     
     class func setEnableStatePref(key: String, value: Bool, isProvince: Bool) {
-        
         pref.setBool(value, forKey: isProvince ? "p_" + key : key)
     }
     
@@ -67,5 +66,18 @@ class SharedValues {
             }
         }
         return provinces
+    }
+    
+    class func setLastUsedProvince(lastUsedProvince: String) {
+        pref.setObject("lastUsedProvince", forKey: "lastUsedProvince")
+    }
+    
+    class func getLastUsedProvince() -> String {
+        var last = pref.objectForKey("lastUsedProvince")
+        
+        if (last == nil) {
+            pref.setObject("กระบี่", forKey: "lastUsedProvince")
+        }
+        return pref.objectForKey("lastUsedProvince") as! String
     }
 }

@@ -120,7 +120,7 @@ class SettingViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(serializationError)
             }
             
-            self.listView.reloadData()
+            self.listView.performSelectorOnMainThread(Selector("reloadData"), withObject: nil, waitUntilDone: true)
         })
         task.resume()
     }

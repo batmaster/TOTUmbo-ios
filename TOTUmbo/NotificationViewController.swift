@@ -14,11 +14,28 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
     
     var listViewDataSource: NSMutableArray = []
     
+    var refreshControl:UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        
+        
+        leftSwipe.direction = .Left
+        
+        
+        view.addGestureRecognizer(leftSwipe)
+        
+        
+        
         listView.dataSource = self
         listView.delegate = self
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "ลากลงเพื่อรีเฟรช")
+        refreshControl.addTarget(self, action: "getDownListTask", forControlEvents: UIControlEvents.ValueChanged)
+        listView.addSubview(refreshControl)
         
         getDownListTask()
     }
@@ -28,8 +45,21 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == .Left) {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("DownView") as! UIViewController
+            self.presentViewController(vc, animated: false, completion: nil)
+            
+        }
+        
+        if (sender.direction == .Right) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("SettingView") as! UIViewController
+            self.presentViewController(vc, animated: false, completion: nil)
+        }
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -100,8 +130,6 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
         sql = sql.stringByReplacingOccurrencesOfString(">", withString: "xxdxx")
         let param: String = "sql=\(sql)"
         
-        print(param)
-        
         request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             data, response, error in
@@ -142,7 +170,7 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
                 print(serializationError)
             }
             
-            self.listView.reloadData()
+            self.listView.performSelectorOnMainThread(Selector("reloadData"), withObject: nil, waitUntilDone: true)
         })
         task.resume()
     }
