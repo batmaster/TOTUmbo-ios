@@ -10,7 +10,7 @@
 
 import UIKit
 
-class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class DownViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var textFieldProvince: UITextField!
     @IBOutlet var pickerViewProvinces: UIPickerView!
@@ -24,9 +24,10 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tabBarController.viewControllers?.forEach { $0.view }
+        tabBarController!.viewControllers?.forEach { $0.view }
         
         textFieldProvince.inputView = pickerViewProvinces
+        textFieldProvince.delegate = self
         
         pickerViewProvinces.dataSource = self
         pickerViewProvinces.delegate = self
@@ -47,6 +48,11 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return true
+    }
     
     
     
@@ -178,6 +184,7 @@ class DownViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             
             self.pickerViewProvinces.reloadAllComponents()
             self.textFieldProvince.text = SharedValues.getLastUsedProvince()
+            
             
             self.getListTask()
         })
