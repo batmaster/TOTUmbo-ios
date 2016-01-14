@@ -149,6 +149,11 @@ class DownViewController: UIViewController, UITextFieldDelegate, UIPickerViewDat
     
     
     func getProvincesTask() {
+        
+        
+        let activitiyViewController = DialogViewController(message: "Connecting...")
+        self.presentViewController(activitiyViewController, animated: true, completion: nil)
+        
         let url = NSURL(string: SharedValues.HOST_DB)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
@@ -185,6 +190,7 @@ class DownViewController: UIViewController, UITextFieldDelegate, UIPickerViewDat
             self.pickerViewProvinces.reloadAllComponents()
             self.textFieldProvince.text = SharedValues.getLastUsedProvince()
             
+//            self.textFieldProvince.resignFirstResponder()
             
             self.getListTask()
         })

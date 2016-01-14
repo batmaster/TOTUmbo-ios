@@ -72,8 +72,8 @@
 		9A984BEE1B5CDA0800483018 = {
 			isa = PBXGroup;
 			children = (
-				9A984BF91B5CDA0800483018 /* TOTUmbo */,
 				9A984BF81B5CDA0800483018 /* Products */,
+				9A984BF91B5CDA0800483018 /* TOTUmbo */,
 			);
 			sourceTree = "<group>";
 		};

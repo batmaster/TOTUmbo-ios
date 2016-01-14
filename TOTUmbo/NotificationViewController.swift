@@ -171,6 +171,7 @@ class NotificationViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             self.listView.performSelectorOnMainThread(Selector("reloadData"), withObject: nil, waitUntilDone: true)
+            self.refreshControl.endRefreshing()
         })
         task.resume()
     }
